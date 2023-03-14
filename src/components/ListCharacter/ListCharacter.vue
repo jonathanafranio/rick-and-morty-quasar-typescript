@@ -1,27 +1,51 @@
 <template>
-    <div>
-        {{ teste123 }}
+    <div class="character-list">
+        <h1 class="page-section__title">{{ title }}</h1>
 
-        <ul>
-            <li v-for="(character, index) in characters" :key="index">
-                {{ character.name }}
-            </li>
-        </ul>
+        <p class="character-list__not-found" v-if="error">
+            Nenhum resultado encontrado. :(
+        </p>
+
+        <div class="character-list__page">
+            <CardCharacter
+                v-for="character in characters"
+                v-bind:key="character.id"
+                :id_character="character.id"
+                :title="character.name"
+                :species="character.species"
+                :thumb="character.image"
+            />
+        </div>
+
+        <Pagination
+            v-if="!loading && pagination.last > 1"
+            :next="pagination.next"
+            :prev="pagination.prev"
+            :active="page"
+            :last="pagination.last"
+            :prefix_url="page_url"
+            :search="search"
+        />
+
+        <Preload v-if="loading" />
     </div>
 </template>
 
 <script lang="ts">
-import { Pagination } from 'components/models';
+import { PaginationType } from 'components/models';
 import { defineComponent, onMounted, ref } from 'vue';
+import Preload from 'components/Preload.vue';
+import CardCharacter from './CardCharacter.vue';
+import Pagination from '../Pagination.vue';
 
 export default defineComponent({
     name: 'ListCharacter',
+    components: {
+        CardCharacter,
+        Pagination,
+        Preload,
+    },
     props: {
-        teste: {
-            type: String,
-            default: '',
-        },
-
         title: String,
         filtro_status: {
             type: String,
@@ -56,18 +80,17 @@ export default defineComponent({
         page_url: String,
     },
     setup(props) {
+        console.log({ props });
         const teste123 = ref<string>('testestestes');
         const request_url = ref<string>('https://rickandmortyapi.com/graphql');
         const characters = ref<[]>([]);
-        const pagination = ref<Pagination>({
+        const pagination = ref<PaginationType>({
             next: '',
             prev: '',
             last: '',
         });
         const loading = ref<boolean>(true);
         const error = ref<boolean>(false);
-
-        console.log('props.teste', props.teste);
 
         onMounted(async () => {
             const query = `{\n

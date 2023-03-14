@@ -7,7 +7,7 @@ export interface Meta {
     totalCount: number;
 }
 
-export interface Pagination {
+export interface PaginationType {
     next: string;
     prev: string;
     last: string;
