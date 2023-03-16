@@ -11,6 +11,16 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/IndexPaginacao.vue'),
     },
 
+    {
+        path: '/search',
+        component: () => import('pages/Search.vue'),
+    },
+
+    {
+        path: '/search/p/:p',
+        component: () => import('pages/SearchPaginacao.vue'),
+    },
+
     // Always leave this as last one,
     // but you can also remove it
     {

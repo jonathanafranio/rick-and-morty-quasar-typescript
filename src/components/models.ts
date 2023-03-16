@@ -12,3 +12,8 @@ export interface PaginationType {
     prev: string;
     last: string;
 }
+
+export interface SearchFilter {
+    key: string;
+    value: string;
+}
