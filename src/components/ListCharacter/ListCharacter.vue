@@ -80,8 +80,6 @@ export default defineComponent({
         page_url: String,
     },
     setup(props) {
-        console.log({ props });
-        const teste123 = ref<string>('testestestes');
         const request_url = ref<string>('https://rickandmortyapi.com/graphql');
         const characters = ref<[]>([]);
         const pagination = ref<PaginationType>({
@@ -139,7 +137,6 @@ export default defineComponent({
             pagination,
             loading,
             error,
-            teste123,
         };
     },
 });

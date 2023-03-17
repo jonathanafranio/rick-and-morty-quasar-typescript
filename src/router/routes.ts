@@ -21,6 +21,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/SearchPaginacao.vue'),
     },
 
+    {
+        path: '/personagem/:personagem',
+        component: () => import('pages/Personagem.vue'),
+    },
+
     // Always leave this as last one,
     // but you can also remove it
     {
