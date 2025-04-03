@@ -1,8 +1,11 @@
 # Rick And Morty (rick-and-morty-quasar-typescript)
 
-Desafio Front End [http://rick-morty-desafio.surge.sh/](http://rick-morty-desafio.surge.sh/)
+Aplicação Front-End que consome a API: [https://rickandmortyapi.com/](https://rickandmortyapi.com/), exibindo episódios e personagens da série Rick and Morty.
+Desenvolvido com Vue Quasar e TypeScript.
 
-## Install the dependencies
+Link da aplicação: [http://rick-morty-desafio.surge.sh/](http://rick-morty-desafio.surge.sh/)
+
+## Instalar dependências
 
 ```bash
 yarn
@@ -10,13 +13,13 @@ yarn
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Iniciar a aplicação no modo de desenvolvimento (recarga automática, relatório de erros, etc.)
 
 ```bash
 quasar dev
 ```
 
-### Lint the files
+### Verificar problemas de lint nos arquivos
 
 ```bash
 yarn lint
@@ -24,7 +27,7 @@ yarn lint
 npm run lint
 ```
 
-### Format the files
+### Formatar arquivos
 
 ```bash
 yarn format
@@ -32,12 +35,8 @@ yarn format
 npm run format
 ```
 
-### Build the app for production
+### Gerar build para produção
 
 ```bash
 quasar build
 ```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
