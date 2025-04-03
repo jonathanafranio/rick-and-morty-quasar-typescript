@@ -12,6 +12,16 @@
 </template>
 
 <script lang="ts">
+
+interface ReplaceItem {
+  text: string;
+  replace: string;
+}
+interface QueryParam {
+    key: string;
+    value: string;
+}
+
 import { defineComponent } from 'vue';
 
 import LayoutDefault from 'components/Layouts/LayoutDefault.vue';
@@ -78,7 +88,8 @@ export default defineComponent({
             newStr = newStr.replaceAll('=', ': ').replaceAll('&', ' e ');
 
             string_replaces.forEach((item) => {
-                newStr = newStr.replaceAll(item.text, item.replace);
+                const replaceItem = item as ReplaceItem; 
+                newStr = newStr.replaceAll(replaceItem.text, replaceItem.replace);
             });
 
             this.title = `Resultado da busca: ${newStr}`;
@@ -86,18 +97,18 @@ export default defineComponent({
         filtro_search(str: string) {
             const newStr: string = str.replace('?', '');
             const newStr2: string[] = newStr.split('&');
-            const newStr3: object[] = newStr2.map((item) => {
+            const newStr3: QueryParam[] = newStr2.map((item) => {
                 const split: string[] = item.split('=');
                 const [key, value] = [split[0], split[1]];
                 return { key, value };
             });
-            const status_search: object[] = newStr3.filter(
+            const status_search: QueryParam[] = newStr3.filter(
                 (item) => item.key === 'status'
             );
-            const gender_search: object[] = newStr3.filter(
+            const gender_search: QueryParam[] = newStr3.filter(
                 (item) => item.key === 'gender'
             );
-            const name_search: object[] = newStr3.filter(
+            const name_search: QueryParam[] = newStr3.filter(
                 (item) => item.key === 'name'
             );
 
